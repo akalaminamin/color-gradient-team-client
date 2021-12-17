@@ -57,7 +57,7 @@ const NavBar = () => {
                       color="blue"
                       size="40"
                       round={true}
-                      className="d-block d-sm-none"
+                      className="d-none d-sm-block"
                     />
                   </>
                 </>

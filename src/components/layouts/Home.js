@@ -15,13 +15,13 @@ const Home = () => {
                 className="w-50"
               />
               <h1 className="fs-1 fw-bold my-3">React Gradient</h1>
-              <h2 className="fs-4 fw-normal mb-2">
+              <h2 className="fs-4 fw-normal mb-3">
                 explore all beautiful handcrafted gradients
               </h2>
-              <Link to="/explore" className="btn btn-dark me-2">
+              <Link to="/explore" className="btn btn-warning text-light fw-bold me-2 text-uppercase">
                 Explore gradients
               </Link>
-              <Link to="/dashboard" className="btn btn-dark">
+              <Link to="/dashboard" className="btn btn-warning text-light fw-bold text-uppercase">
                 Dashboard
               </Link>
             </Col>

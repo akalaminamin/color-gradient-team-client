@@ -29,16 +29,7 @@ export default (state = intialState, { type, payload }) => {
             : gradient
         ),
       };
-    case SET_GRADIENT:
-      return {
-        ...state,
-        gradient: payload,
-      };
-    case REMOVE_GRADIENT:
-      return {
-        ...state,
-        gradient: null,
-      };
+
     case CREATE_GRADIENT:
       return {
         ...state,
@@ -57,6 +48,16 @@ export default (state = intialState, { type, payload }) => {
         gradients: state.gradients.filter((gradient) =>
           gradient._id === payload._id ? payload : gradient
         ),
+      };
+    case SET_GRADIENT:
+      return {
+        ...state,
+        gradient: payload,
+      };
+    case REMOVE_GRADIENT:
+      return {
+        ...state,
+        gradient: null,
       };
     default:
       return state;

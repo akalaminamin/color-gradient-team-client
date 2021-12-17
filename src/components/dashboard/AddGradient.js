@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
+import Swal from "sweetalert2";
+
 import {
   getGradient,
   createGradient,
@@ -28,7 +30,7 @@ const GradientDirection = Styled.div`
     height:50px;
     cursor:pointer;
     background-image:linear-gradient(
-        ${(props) => props.position}, 
+        ${(props) => props.direction}, 
         ${(props) => props.firstColor}, 
         ${(props) => props.lastColor});
 `;
@@ -53,29 +55,33 @@ const AddGradient = () => {
   ]);
   useEffect(() => {
     dispatch(getGradient());
-  }, []);
-
-  //   handle cancle or edit
-  useEffect(() => {
-    if (currentGradient != null) {
-      setName(currentGradient.name);
-      setFirstColor(currentGradient.colors.start);
-      setLastColor(currentGradient.colors.end);
-    } else {
-      setName("");
-      setFirstColor("");
-      setLastColor("");
-    }
-  }, [currentGradient]);
+  }, [isDelete]);
 
   // handle delete
   const handleDelete = (id) => {
-    dispatch(deleteGradient(id));
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Delete your gradient.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          "Deleted!",
+          "Your Gradient has been deleted.",
+          "success",
+          isDelete
+        );
+        setDelete(!isDelete);
+        dispatch(deleteGradient(id));
+      }
+    });
   };
 
-  console.log("loaded");
-
-  //   handle submit
+  //   handle create gradient
   const handleSubmit = (e) => {
     e.preventDefault();
     const gradient = {
@@ -95,12 +101,26 @@ const AddGradient = () => {
       setName("");
       setFirstColor("");
       setLastColor("");
-      setPositions("");
+      setDirections("");
     } else {
       dispatch(updateGradient(Object.assign(currentGradient, gradient)));
     }
     setCurrentGradient(null);
   };
+
+  //   handle cancle or edit
+  useEffect(() => {
+    if (currentGradient !== null) {
+      setName(currentGradient.name);
+      setFirstColor(currentGradient.colors.start);
+      setLastColor(currentGradient.colors.end);
+    } else {
+      setName("");
+      setFirstColor("");
+      setDirections("");
+      setLastColor("");
+    }
+  }, [currentGradient]);
   return (
     <>
       <Container>
@@ -162,13 +182,13 @@ const AddGradient = () => {
                   />
                 </Form.Group>
                 <Row className="mb-2 g-3">
-                  { firstColor &&
+                  {firstColor &&
                     lastColor &&
                     positions.map((position, index) => (
                       <Col sm={6} key={index}>
                         <GradientDirection
                           className="d-flex align-items-center justify-content-center text-light rounded"
-                          position={position}
+                          direction={position}
                           firstColor={firstColor}
                           lastColor={lastColor}
                           onClick={() => setDirections(position)}

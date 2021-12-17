@@ -7,7 +7,6 @@ import {
   signInWithPopup,
   signInWithEmailAndPassword,
   GoogleAuthProvider,
-  FacebookAuthProvider,
   signOut,
   updateProfile,
 } from "firebase/auth";
@@ -23,7 +22,6 @@ const AuthProvider = ({ children }) => {
   const [error, setError] = useState("");
   const auth = getAuth();
   const googleProvider = new GoogleAuthProvider();
-  const facebookProvider = new FacebookAuthProvider();
   const navigate = useNavigate();
   const location = useLocation();
   let from = location.state?.from?.pathname || "/";
@@ -62,7 +60,6 @@ const AuthProvider = ({ children }) => {
       ...user,
     });
   };
-
   //   signin function
   const signIn = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);

@@ -23,10 +23,7 @@ function App() {
           <NavBar />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route
-              path="/explore"
-              element={<Explore />}
-            />
+            <Route path="/explore" element={<Explore />} />
             <Route
               path="/dashboard"
               element={
@@ -35,11 +32,14 @@ function App() {
                 </PrivateRoute>
               }
             />
-            <Route path="/add_gradient" element={
-              <PrivateRoute>
-                <AddGradient />
-              </PrivateRoute>
-            } />
+            <Route
+              path="/add_gradient"
+              element={
+                <PrivateRoute>
+                  <AddGradient />
+                </PrivateRoute>
+              }
+            />
             <Route
               path="/Login"
               element={
