@@ -7,6 +7,9 @@ import Dashboard from "./components/dashboard/Dashboard";
 import AddGradient from "./components/dashboard/AddGradient";
 import Login from "./components/dashboard/Login";
 import PrivateRoute from "./components/dashboard/PrivateRoute";
+import Register from "./components/dashboard/Register";
+import AuthProvider from "./contexts/AuthContext";
+import PublickRoute from "./components/dashboard/PublicRoute";
 
 {
   /* <h1>In the name of Allah</h1> */
@@ -14,25 +17,49 @@ import PrivateRoute from "./components/dashboard/PrivateRoute";
 
 function App() {
   return (
-    <div className="App">
+    <>
       <Router>
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/explore" element={<Explore />} />
-          <Route
-            path="/dashboard"
-            element={
+        <AuthProvider>
+          <NavBar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route
+              path="/explore"
+              element={<Explore />}
+            />
+            <Route
+              path="/dashboard"
+              element={
+                <PrivateRoute>
+                  <Dashboard />
+                </PrivateRoute>
+              }
+            />
+            <Route path="/add_gradient" element={
               <PrivateRoute>
-                <Dashboard />
+                <AddGradient />
               </PrivateRoute>
-            }
-          />
-          <Route path="/add_gradient" element={<AddGradient />} />
-          <Route path="/Login" element={<Login />} />
-        </Routes>
+            } />
+            <Route
+              path="/Login"
+              element={
+                <PublickRoute>
+                  <Login />
+                </PublickRoute>
+              }
+            />
+            <Route
+              path="/register"
+              element={
+                <PublickRoute>
+                  <Register />
+                </PublickRoute>
+              }
+            />
+          </Routes>
+        </AuthProvider>
       </Router>
-    </div>
+    </>
   );
 }
 

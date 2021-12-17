@@ -1,17 +1,14 @@
 import React from "react";
 import { useLocation, Navigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useAuth } from "../../contexts/AuthContext";
 
 const PrivateRoute = ({ children }) => {
-  const firebaseReducer = useSelector((state) => state.firebase.auth);
-  console.log(firebaseReducer);
-  
-  const { isLoaded, isEmpty } = firebaseReducer;
-  let location = useLocation();
-  if (isLoaded === null) {
+  const { currentUser, loading } = useAuth();
+  const location = useLocation();
+  if (loading) {
     return <h3>loading....</h3>;
   }
-  if (isEmpty) {
+  if (!currentUser) {
     return <Navigate to="/login" state={{ from: location }} />;
   }
   return children;

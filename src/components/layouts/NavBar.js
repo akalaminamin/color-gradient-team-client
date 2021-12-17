@@ -1,7 +1,11 @@
 import React from "react";
-import { Navbar, Container, Nav } from "react-bootstrap";
+import { Navbar, Container, Nav, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
+import Avatar from "react-avatar";
 const NavBar = () => {
+  const { currentUser, logOut } = useAuth();
+  console.log(currentUser);
   return (
     <>
       <Navbar bg="light shadow-sm" expand="lg">
@@ -14,20 +18,57 @@ const NavBar = () => {
               className="d-inline-block align-top"
               alt="React Bootstrap logo"
             />
-            <span className="text-uppercase ms-2 fw-bold mt-1 d-inline-block">Gradient</span>
+            <span className="text-uppercase ms-2 fw-bold mt-1 d-inline-block">
+              Gradient
+            </span>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
-              <Link to="/explore" className="btn btn-warning fw-bold me-2 text-light">
+              <Link
+                to="/explore"
+                className="btn btn-warning fw-bold me-2 text-light"
+              >
                 Explore
               </Link>
-              <Link to="/dashboard" className="btn btn-warning fw-bold text-light">
-              Dashboard
-              </Link>
-              <Link to="/login" className="btn btn-warning fw-bold text-light">
-              Login
-              </Link>
+              {currentUser ? (
+                <>
+                  <Link
+                    to="/add_gradient"
+                    className="btn btn-warning fw-bold me-2 text-light"
+                  >
+                    Add Gradient
+                  </Link>
+                  <Link
+                    to="/dashboard"
+                    className="btn btn-warning fw-bold text-light me-2"
+                  >
+                    Dashboard
+                  </Link>
+                  <>
+                    <Button
+                      variant="warning"
+                      className="text-light fw-bold me-2"
+                      onClick={logOut}
+                    >
+                      Log out
+                    </Button>
+                    <Avatar
+                      name={currentUser.displayName}
+                      color="blue"
+                      size="40"
+                      round={true}
+                    />
+                  </>
+                </>
+              ) : (
+                <Link
+                  to="/login"
+                  className="btn btn-warning fw-bold text-light"
+                >
+                  Login
+                </Link>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>

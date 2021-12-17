@@ -1,4 +1,4 @@
-import firebase from 'firebase/compat/app';
+import {initializeApp} from 'firebase/app';
 import "firebase/auth";
 
 // firebase configuration
@@ -10,10 +10,8 @@ const firebaseConfig = {
   messagingSenderId: "1072253469075",
   appId: "1:1072253469075:web:324456b9212da944bee866",
 };
-firebase.initializeApp(firebaseConfig);
 
-const auth = firebase.auth();
-const googleProvider = new firebase.auth.GoogleAuthProvider();
-const facebookProvider = new firebase.auth.FacebookAuthProvider();
+const app = initializeApp(firebaseConfig);
 
-export { auth, googleProvider, facebookProvider };
+export default app;
+

@@ -18,8 +18,11 @@ const Home = () => {
               <h2 className="fs-4 fw-normal mb-2">
                 explore all beautiful handcrafted gradients
               </h2>
-              <Link to="/explore" className="btn btn-dark">
+              <Link to="/explore" className="btn btn-dark me-2">
                 Explore gradients
+              </Link>
+              <Link to="/dashboard" className="btn btn-dark">
+                Dashboard
               </Link>
             </Col>
             <Col sm={12} md={6} className="shadow">
