@@ -5,10 +5,9 @@ import { useAuth } from "../../contexts/AuthContext";
 import Avatar from "react-avatar";
 const NavBar = () => {
   const { currentUser, logOut } = useAuth();
-  console.log(currentUser);
   return (
     <>
-      <Navbar bg="light shadow-sm" expand="lg">
+      <Navbar bg="light shadow-sm" expand="md">
         <Container>
           <Navbar.Brand as={Link} to="/">
             <img
@@ -27,7 +26,7 @@ const NavBar = () => {
             <Nav className="ms-auto">
               <Link
                 to="/explore"
-                className="btn btn-warning fw-bold me-2 text-light"
+                className="btn btn-warning fw-bold me-2 text-light mb-2 mb-md-0"
               >
                 Explore
               </Link>
@@ -35,20 +34,20 @@ const NavBar = () => {
                 <>
                   <Link
                     to="/add_gradient"
-                    className="btn btn-warning fw-bold me-2 text-light"
+                    className="btn btn-warning fw-bold mb-2 mb-md-0 me-2 text-light"
                   >
                     Add Gradient
                   </Link>
                   <Link
                     to="/dashboard"
-                    className="btn btn-warning fw-bold text-light me-2"
+                    className="btn btn-warning fw-bold text-light me-2 mb-2 mb-md-0"
                   >
                     Dashboard
                   </Link>
                   <>
                     <Button
                       variant="warning"
-                      className="text-light fw-bold me-2"
+                      className="text-light fw-bold me-2 mb-2 mb-md-0"
                       onClick={logOut}
                     >
                       Log out
@@ -58,13 +57,14 @@ const NavBar = () => {
                       color="blue"
                       size="40"
                       round={true}
+                      className="d-block d-sm-none"
                     />
                   </>
                 </>
               ) : (
                 <Link
                   to="/login"
-                  className="btn btn-warning fw-bold text-light"
+                  className="btn btn-warning fw-bold text-light mb-2 mb-md-0"
                 >
                   Login
                 </Link>

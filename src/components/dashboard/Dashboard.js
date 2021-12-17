@@ -9,7 +9,6 @@ const Dashboard = () => {
   useEffect(() => {
     dispatch(getGradient());
   }, [dispatch]);
-  console.log(gradients.map((gradient) => gradient.downloads));
   return (
     <>
       <Container className="py-5">
@@ -18,7 +17,7 @@ const Dashboard = () => {
             <Link to="/add_gradient" className="text-decoration-none">
               <div className=" d-flex justify-content-around align-items-center">
                 <div>
-                  <span class="material-icons dashboard-icon icon">
+                  <span className="material-icons dashboard-icon icon">
                     palette
                   </span>
                 </div>
@@ -35,7 +34,7 @@ const Dashboard = () => {
             className="d-flex  justify-content-around align-items-center bg-light rounded-sm py-4 px-3"
           >
             <div className="">
-              <span class="material-icons dashboard-icon icon">
+              <span className="material-icons dashboard-icon icon">
                 cloud_download
               </span>
             </div>
@@ -54,7 +53,7 @@ const Dashboard = () => {
             className="d-flex justify-content-around align-items-center bg-light rounded-sm py-4 px-3"
           >
             <div className="">
-              <span class="material-icons dashboard-icon icon">face</span>
+              <span className="material-icons dashboard-icon icon">face</span>
             </div>
             <div className="text-center">
               <h2>70k</h2>
@@ -72,8 +71,8 @@ const Dashboard = () => {
                 </tr>
               </thead>
               <tbody>
-                {gradients.map(({ name, downloads }) => (
-                  <tr>
+                {gradients.map(({ name, downloads, _id }) => (
+                  <tr key={_id}>
                     <td>{name}</td>
                     <td>{downloads}</td>
                   </tr>

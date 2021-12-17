@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Container, Form, Button, Row, Col, Alert } from "react-bootstrap";
-import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 const Login = () => {
   const [user, setUser] = useState({
@@ -12,7 +12,6 @@ const Login = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const location = useLocation();
   const { name, email, password, confirmPassword } = user;
   const { signUp } = useAuth();
   const handleChange = (e) => {

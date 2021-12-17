@@ -48,7 +48,7 @@ export default (state = intialState, { type, payload }) => {
       return {
         ...state,
         gradients: state.gradients.filter(
-          (gradient) => gradient._id != payload
+          (gradient) => gradient._id !== payload
         ),
       };
     case UPDATE_GRADIENT:

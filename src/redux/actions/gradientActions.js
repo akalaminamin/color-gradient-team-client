@@ -8,11 +8,10 @@ import {
   DOWNLOAD_GRADIENT,
 } from "../constants/type";
 import axios from "axios";
-const url = `http://localhost:5000/gradients`;
 
 // get All gradient
 export const getGradient = () => async (dispatch) => {
-  const result = await axios.get(url);
+  const result = await axios.get(`http://localhost:5000/gradients`);
   dispatch({
     type: GET_GRADIENTS,
     payload: result.data,
@@ -41,7 +40,7 @@ export const removeGradient = () => ({
 
 // create gradient
 export const createGradient = (gradient) => async (dispatch) => {
-  const result = await axios.post(url, gradient);
+  const result = await axios.post(`http://localhost:5000/gradients`, gradient);
   dispatch({
     type: CREATE_GRADIENT,
     payload: result.data,

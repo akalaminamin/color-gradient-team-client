@@ -53,7 +53,7 @@ const AddGradient = () => {
   ]);
   useEffect(() => {
     dispatch(getGradient());
-  }, [dispatch, isDelete]);
+  }, []);
 
   //   handle cancle or edit
   useEffect(() => {
@@ -71,8 +71,9 @@ const AddGradient = () => {
   // handle delete
   const handleDelete = (id) => {
     dispatch(deleteGradient(id));
-    setDelete(true);
   };
+
+  console.log("loaded");
 
   //   handle submit
   const handleSubmit = (e) => {
@@ -100,15 +101,14 @@ const AddGradient = () => {
     }
     setCurrentGradient(null);
   };
-  console.log("loaded");
   return (
     <>
       <Container>
         <Row className="mt-3">
-          <Col xs={12} md={8}>
+          <Col xs={12} md={6} lg={8}>
             <Row className="g-3">
               {gradients.map((gradient) => (
-                <Col xs={12} md={6} lg={4}>
+                <Col xs={12} md={6} lg={4} key={gradient._id}>
                   <GradientChips
                     className="d-flex align-items-center justify-content-center"
                     direction={gradient.colors.direction}
@@ -134,7 +134,7 @@ const AddGradient = () => {
               ))}
             </Row>
           </Col>
-          <Col xs={12} lg={4}>
+          <Col xs={12} md={6} lg={4}>
             <div className="bg-white shadow p-4">
               <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-2">
@@ -162,10 +162,10 @@ const AddGradient = () => {
                   />
                 </Form.Group>
                 <Row className="mb-2 g-3">
-                  {firstColor &&
+                  { firstColor &&
                     lastColor &&
-                    positions.map((position) => (
-                      <Col sm={6}>
+                    positions.map((position, index) => (
+                      <Col sm={6} key={index}>
                         <GradientDirection
                           className="d-flex align-items-center justify-content-center text-light rounded"
                           position={position}
