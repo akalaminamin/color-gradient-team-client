@@ -11,10 +11,6 @@ import Register from "./components/dashboard/Register";
 import AuthProvider from "./contexts/AuthContext";
 import PublickRoute from "./components/dashboard/PublicRoute";
 
-{
-  /* <h1>In the name of Allah</h1> */
-}
-
 function App() {
   return (
     <>
