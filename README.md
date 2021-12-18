@@ -1,7 +1,7 @@
 # Getting Started with Color Gradient generator
 
-This project was [Color Gradient generator](https://color-gradient.web.app/).
-![color gradient](https://i.ibb.co/zhfMFfy/screencapture-color-gradient-web-app-explore-2021-12-17-20-52-30.png)
+This project is [Color Gradient generator](https://color-gradient.web.app/).
+(https://i.ibb.co/zhfMFfy/screencapture-color-gradient-web-app-explore-2021-12-17-20-52-30.png)
 
 ### Some Feature Color Gradient generator
 - New users can create an account using email, password, and google and log in.
