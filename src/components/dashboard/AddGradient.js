@@ -94,7 +94,10 @@ const AddGradient = () => {
     };
     if (currentGradient === null) {
       if (!name || !firstColor || !lastColor || !positions) {
-        alert("Please field the input box");
+        Swal.fire({
+          icon: 'warning',
+          title: 'Please field the input box',
+        })
         return;
       }
       dispatch(createGradient(gradient));
