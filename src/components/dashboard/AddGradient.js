@@ -10,6 +10,7 @@ import {
   updateGradient,
 } from "../../redux/actions/gradientActions";
 import Styled from "styled-components";
+import Loader from "./Loader";
 const GradientChips = Styled.div`
     width:100%,;
     height:150px;
@@ -95,9 +96,9 @@ const AddGradient = () => {
     if (currentGradient === null) {
       if (!name || !firstColor || !lastColor || !positions) {
         Swal.fire({
-          icon: 'warning',
-          title: 'Please field the input box',
-        })
+          icon: "warning",
+          title: "Please field the input box",
+        });
         return;
       }
       dispatch(createGradient(gradient));
@@ -129,33 +130,37 @@ const AddGradient = () => {
       <Container>
         <Row className="mt-3">
           <Col xs={12} md={6} lg={8}>
-            <Row className="g-3">
-              {gradients.map((gradient) => (
-                <Col xs={12} md={6} lg={4} key={gradient._id}>
-                  <GradientChips
-                    className="d-flex align-items-center justify-content-center"
-                    direction={gradient.colors.direction}
-                    start={gradient.colors.start}
-                    end={gradient.colors.end}
-                  >
-                    <div className="btns">
-                      <Button
-                        variant="light me-2"
-                        onClick={() => setCurrentGradient(gradient)}
-                      >
-                        Edit
-                      </Button>
-                      <Button
-                        variant="light"
-                        onClick={() => handleDelete(gradient._id)}
-                      >
-                        Delete
-                      </Button>
-                    </div>
-                  </GradientChips>
-                </Col>
-              ))}
-            </Row>
+            {gradients ? (
+              <Row className="g-3">
+                {gradients.map((gradient) => (
+                  <Col xs={12} md={6} lg={4} key={gradient._id}>
+                    <GradientChips
+                      className="d-flex align-items-center justify-content-center"
+                      direction={gradient.colors.direction}
+                      start={gradient.colors.start}
+                      end={gradient.colors.end}
+                    >
+                      <div className="btns">
+                        <Button
+                          variant="light me-2"
+                          onClick={() => setCurrentGradient(gradient)}
+                        >
+                          Edit
+                        </Button>
+                        <Button
+                          variant="light"
+                          onClick={() => handleDelete(gradient._id)}
+                        >
+                          Delete
+                        </Button>
+                      </div>
+                    </GradientChips>
+                  </Col>
+                ))}
+              </Row>
+            ) : (
+              <Loader />
+            )}
           </Col>
           <Col xs={12} md={6} lg={4}>
             <div className="bg-white shadow p-4">

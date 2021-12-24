@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { getGradient } from "../../redux/actions/gradientActions";
+import Loader from "../dashboard/Loader";
 import FullGradient from "./FullGradient";
 import Gradient from "./Gradient";
 
@@ -13,6 +14,7 @@ const Gradients = () => {
   useEffect(() => {
     dispatch(getGradient());
   }, [dispatch]);
+
   return (
     <>
       {gradient && <FullGradient />}
