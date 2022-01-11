@@ -20,8 +20,8 @@ export default (state = intialState, { type, payload }) => {
         ...state,
         gradients: payload,
       };
-    case DOWNLOAD_GRADIENT:
-      return {
+    case DOWNLOAD_GRADIENT: 
+      return {    
         ...state,
         gradients: state.gradients.map((gradient) =>
           gradient.name === payload
