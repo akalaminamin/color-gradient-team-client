@@ -23,7 +23,7 @@ export default (state = intialState, { type, payload }) => {
     case DOWNLOAD_GRADIENT: 
       return {    
         ...state,
-        gradients: state.gradients.map((gradient) =>
+        gradients: state.gradients.map((gradient) => 
           gradient.name === payload
             ? Object.assign(gradient, { downloads: gradient.downloads + 1 })
             : gradient
